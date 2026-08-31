@@ -3,24 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>OtoRadar | Arabayı Almadan Önce Sor</title>
 
 <style>
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
   background: #f4f6f8;
   color: #17202a;
 }
 
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
 .hero {
-  padding: 55px 20px 35px;
   text-align: center;
-  background: linear-gradient(135deg, #ffffff, #eef3f8);
+  padding: 40px 10px 25px;
 }
 
 .logo {
@@ -29,97 +42,91 @@ body {
   margin-bottom: 20px;
 }
 
-h1 {
-  font-size: clamp(38px, 8vw, 72px);
-  line-height: 1;
-  margin: 0 auto 20px;
-  max-width: 850px;
-  letter-spacing: -2px;
+.hero h1 {
+  font-size: clamp(34px, 8vw, 64px);
+  margin: 0;
+  line-height: 1.05;
 }
 
-.subtitle {
-  max-width: 650px;
-  margin: auto;
-  font-size: 18px;
+.hero p {
   color: #667085;
-  line-height: 1.5;
-}
-
-.container {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 25px 15px 60px;
+  font-size: 17px;
+  margin-top: 18px;
 }
 
 .card {
   background: white;
   border-radius: 24px;
-  padding: 28px;
-  box-shadow: 0 12px 35px rgba(0,0,0,.08);
-  margin-bottom: 22px;
+  padding: 25px;
+  margin-top: 20px;
+  box-shadow:
+    0 10px 35px rgba(0,0,0,.07);
 }
 
 .card h2 {
   margin-top: 0;
-  font-size: 23px;
+  font-size: 22px;
+}
+
+.section-title {
+  margin-top: 28px;
+  margin-bottom: 15px;
+  font-weight: 800;
+  font-size: 18px;
 }
 
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 15px;
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: 7px;
 }
 
-label {
+.field label {
   font-weight: 700;
+  margin-bottom: 7px;
   font-size: 14px;
 }
 
 input,
 select {
   width: 100%;
-  padding: 15px;
-  border: 1px solid #d9dee5;
+  border: 1px solid #d0d5dd;
   border-radius: 12px;
-  background: #fff;
+  padding: 14px;
   font-size: 16px;
-  color: #17202a;
+  background: white;
 }
 
 input:focus,
 select:focus {
   outline: none;
-  border-color: #3478f6;
-  box-shadow: 0 0 0 3px rgba(52,120,246,.12);
+  border-color: #111827;
 }
 
-.full {
-  grid-column: 1 / -1;
-}
-
-.section-title {
-  margin: 28px 0 14px;
-  font-size: 18px;
+.optional {
+  color: #98a2b3;
+  font-weight: 400;
 }
 
 button {
   width: 100%;
-  border: 0;
+  border: none;
   border-radius: 14px;
   padding: 17px;
+  margin-top: 25px;
+
+  background: #111827;
+  color: white;
+
   font-size: 18px;
   font-weight: 800;
+
   cursor: pointer;
-  background: #1769e0;
-  color: white;
-  box-shadow: 0 8px 20px rgba(23,105,224,.25);
 }
 
 button:active {
@@ -128,865 +135,1856 @@ button:active {
 
 .result {
   display: none;
+  text-align: center;
+}
+
+.score-label {
+  color: #667085;
+  font-weight: 700;
 }
 
 .score {
-  text-align: center;
-  padding: 20px;
-}
-
-.score-number {
-  font-size: 76px;
+  font-size: 80px;
   font-weight: 900;
   line-height: 1;
-}
-
-.status {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 10px 18px;
-  border-radius: 999px;
-  font-weight: 800;
-  background: #eee;
-}
-
-.result-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.result-box {
-  background: #f6f8fa;
-  padding: 18px 10px;
-  border-radius: 14px;
-  text-align: center;
-}
-
-.result-box small {
-  display: block;
-  color: #667085;
-  margin-bottom: 7px;
-}
-
-.result-box strong {
-  font-size: 19px;
-}
-
-.reason {
-  margin-top: 25px;
-  padding: 20px;
-  background: #f8fafc;
-  border-radius: 16px;
-}
-
-.reason li {
   margin: 10px 0;
 }
 
+.badge {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 30px;
+  background: #e8f7ed;
+  color: #16803c;
+  font-weight: 800;
+}
+
+.price-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.price-box {
+  background: #f6f8fa;
+  border-radius: 16px;
+  padding: 18px 10px;
+}
+
+.price-title {
+  color: #667085;
+  font-size: 14px;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 900;
+  margin-top: 7px;
+}
+
+.target {
+  margin-top: 15px;
+  background: #f6f8fa;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.target-title {
+  color: #667085;
+}
+
+.target-price {
+  font-size: 28px;
+  font-weight: 900;
+  margin-top: 5px;
+}
+
+.reason {
+  text-align: left;
+  margin-top: 25px;
+  background: #f6f8fa;
+  border-radius: 18px;
+  padding: 20px;
+}
+
+.reason h3 {
+  margin-top: 0;
+}
+
+.reason li {
+  margin-bottom: 10px;
+}
+
 .warning {
-  margin-top: 18px;
+  margin-top: 15px;
   padding: 15px;
   border-radius: 12px;
-  background: #fff8df;
+  background: #fff7df;
   color: #795600;
   font-size: 14px;
 }
 
-.footer {
-  text-align: center;
-  color: #98a2b3;
-  padding: 30px;
-  font-size: 13px;
-}
+@media(max-width: 650px) {
 
-@media(max-width:650px) {
   .grid {
     grid-template-columns: 1fr;
   }
 
-  .full {
-    grid-column: auto;
-  }
-
-  .result-grid {
+  .price-grid {
     grid-template-columns: 1fr;
   }
 
-  .card {
-    padding: 20px;
+  .hero {
+    padding-top: 25px;
   }
 
-  h1 {
-    font-size: 43px;
+  .card {
+    padding: 18px;
+  }
+
+  .score {
+    font-size: 65px;
   }
 }
+
 </style>
 </head>
 
+
 <body>
 
-<section class="hero">
-  <div class="logo">🚗 OtoRadar</div>
-  <h1>Arabayı almadan önce sor.</h1>
-  <p class="subtitle">
-    Beğendiğin aracın bilgilerini gir.
-    OtoRadar sana tahmini alım fiyatını,
-    fırsat skorunu ve pazarlık hedefini söylesin.
-  </p>
-</section>
+<div class="container">
 
-<main class="container">
+  <div class="hero">
 
-<div class="card">
+    <div class="logo">
+      🚗 OtoRadar
+    </div>
 
-<h2>🚗 Aracını Analiz Et</h2>
+    <h1>
+      Arabayı almadan önce sor.
+    </h1>
 
-<div class="section-title">Araç Bilgileri</div>
+    <p>
+      Beğendiğin aracın bilgilerini gir.
+      OtoRadar sana tahmini alım fiyatını,
+      fırsat skorunu ve pazarlık hedefini söylesin.
+    </p>
 
-<div class="grid">
-
-<div class="field">
-<label>Marka</label>
-<select id="brand" onchange="updateModels()">
-<option value="">Marka seç</option>
-<option>Audi</option>
-<option>BMW</option>
-<option>Chery</option>
-<option>Citroen</option>
-<option>Fiat</option>
-<option>Ford</option>
-<option>Honda</option>
-<option>Hyundai</option>
-<option>Kia</option>
-<option>Mazda</option>
-<option>Mercedes-Benz</option>
-<option>MG</option>
-<option>Nissan</option>
-<option>Opel</option>
-<option>Peugeot</option>
-<option>Renault</option>
-<option>Seat</option>
-<option>Skoda</option>
-<option>Tesla</option>
-<option>Toyota</option>
-<option>Togg</option>
-<option>Volkswagen</option>
-<option>Volvo</option>
-</select>
-</div>
-
-<div class="field">
-<label>Model</label>
-<select id="model">
-<option value="">Önce marka seç</option>
-</select>
-</div>
-
-<div class="field">
-<label>Model yılı</label>
-<input id="year" type="number" value="2021" min="1990" max="2030">
-</div>
-
-<div class="field">
-<label>Kilometre</label>
-<input id="km" type="number" placeholder="Örn. 85000">
-</div>
-
-<div class="field">
-<label>Paket <span style="color:#98a2b3">(isteğe bağlı)</span></label>
-<select id="package">
-<option value="">Paket bilgisi yok</option>
-<option>Base</option>
-<option>Comfort</option>
-<option>Elegance</option>
-<option>Elite</option>
-<option>Executive</option>
-<option>Luxury</option>
-<option>Premium</option>
-<option>Sport</option>
-<option>Style</option>
-<option>Tech</option>
-<option>Ultimate</option>
-</select>
-</div>
-
-<div class="field">
-<label>İlan fiyatı (TL)</label>
-<input id="price" type="number" placeholder="Örn. 1000000">
-</div>
-
-</div>
-
-<div class="section-title">🔧 Hasar & Ekspertiz</div>
-
-<div class="grid">
-
-<div class="field">
-<label>Tramer (TL)</label>
-<input id="tramer" type="number" value="0">
-</div>
-
-<div class="field">
-<label>Boyalı parça</label>
-<input id="painted" type="number" value="0" min="0">
-</div>
-
-<div class="field">
-<label>Değişen parça</label>
-<input id="changed" type="number" value="0" min="0">
-</div>
-
-<div class="field">
-<label>Şasi durumu</label>
-<select id="chassis">
-<option value="0">İşlem yok</option>
-<option value="1">Şüpheli / kontrol edilmeli</option>
-<option value="2">İşlem var</option>
-</select>
-</div>
-
-<div class="field">
-<label>Podye durumu</label>
-<select id="podye">
-<option value="0">İşlem yok</option>
-<option value="1">Şüpheli / kontrol edilmeli</option>
-<option value="2">İşlem var</option>
-</select>
-</div>
-
-<div class="field">
-<label>Direk durumu</label>
-<select id="direk">
-<option value="0">İşlem yok</option>
-<option value="1">Şüpheli / kontrol edilmeli</option>
-<option value="2">İşlem var</option>
-</select>
-</div>
-
-</div>
-
-<div class="warning">
-⚠️ Şasi, podye veya direk işlemi varsa OtoRadar'ın
-fiyat değerlendirmesi ciddi şekilde değişebilir.
-</div>
-
-<br>
-
-<button onclick="analyze()">🚗 OtoRadar ile Analiz Et</button>
-
-</div>
+  </div>
 
 
-<div id="result" class="card result">
+  <div class="card">
 
-<div class="score">
-<div>OtoRadar Alım Skoru</div>
-<div id="score" class="score-number">--</div>
-<div id="status" class="status">--</div>
-</div>
+    <h2>🚗 Aracını Analiz Et</h2>
 
-<div class="result-grid">
 
-<div class="result-box">
-<small>Önerilen minimum</small>
-<strong id="minPrice">--</strong>
-</div>
+    <div class="section-title">
+      Araç Bilgileri
+    </div>
 
-<div class="result-box">
-<small>Önerilen maksimum</small>
-<strong id="maxPrice">--</strong>
-</div>
 
-<div class="result-box">
-<small>İlan fiyatı</small>
-<strong id="listingPrice">--</strong>
-</div>
+    <div class="grid">
 
-</div>
+      <div class="field">
 
-<div class="result-box" style="margin-top:12px">
-<small>🎯 Pazarlık hedefi</small>
-<strong id="targetPrice">--</strong>
-</div>
+        <label>Marka</label>
 
-<div class="reason">
-<h3>OtoRadar neden böyle düşünüyor?</h3>
-<ul id="reasons"></ul>
-</div>
+        <select id="brand">
+          <option value="">
+            Marka seç
+          </option>
+        </select>
 
-</div>
+      </div>
 
-</main>
 
-<div class="footer">
-OtoRadar • Arabayı Almadan Önce Sor 🚗
+      <div class="field">
+
+        <label>Model</label>
+
+        <select id="model">
+
+          <option value="">
+            Önce marka seç
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>Motor</label>
+
+        <select id="engine">
+
+          <option value="">
+            Önce model seç
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Paket
+          <span class="optional">
+            (isteğe bağlı)
+          </span>
+        </label>
+
+        <select id="package">
+
+          <option value="">
+            Paket bilgisi yok
+          </option>
+
+          <option>Base</option>
+          <option>Comfort</option>
+          <option>Elegance</option>
+          <option>Elite</option>
+          <option>Executive</option>
+          <option>Luxury</option>
+          <option>Premium</option>
+          <option>Sport</option>
+          <option>Style</option>
+          <option>Tech</option>
+          <option>Ultimate</option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>Model yılı</label>
+
+        <input
+          id="year"
+          type="number"
+          value="2021"
+          min="1990"
+          max="2030"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>Kilometre</label>
+
+        <input
+          id="km"
+          type="number"
+          placeholder="Örn. 85000"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>İlan fiyatı (TL)</label>
+
+        <input
+          id="price"
+          type="number"
+          placeholder="Örn. 1000000"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>Yakıt</label>
+
+        <select id="fuel">
+
+          <option>Benzin</option>
+          <option>Dizel</option>
+          <option>Hibrit</option>
+          <option>Elektrik</option>
+          <option>LPG</option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>Şanzıman</label>
+
+        <select id="transmission">
+
+          <option>Otomatik</option>
+          <option>Manuel</option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <div class="section-title">
+      🔧 Hasar & Ekspertiz
+    </div>
+
+
+    <div class="grid">
+
+      <div class="field">
+
+        <label>Tramer (TL)</label>
+
+        <input
+          id="damage"
+          type="number"
+          value="0"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>Boyalı parça</label>
+
+        <input
+          id="painted"
+          type="number"
+          value="0"
+          min="0"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>Değişen parça</label>
+
+        <input
+          id="changed"
+          type="number"
+          value="0"
+          min="0"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>Şasi durumu</label>
+
+        <select id="chassis">
+
+          <option>İşlem yok</option>
+          <option>İşlem var</option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>Podye durumu</label>
+
+        <select id="podye">
+
+          <option>İşlem yok</option>
+          <option>İşlem var</option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>Direk durumu</label>
+
+        <select id="pillar">
+
+          <option>İşlem yok</option>
+          <option>İşlem var</option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <button onclick="analyzeCar()">
+      🚗 Aracımı Analiz Et
+    </button>
+
+  </div>
+
+
+  <div
+    class="card result"
+    id="result"
+  >
+
+    <div class="score-label">
+      OtoRadar Alım Skoru
+    </div>
+
+
+    <div
+      class="score"
+      id="score"
+    >
+      0/100
+    </div>
+
+
+    <div
+      class="badge"
+      id="badge"
+    >
+      🟢 ALINABİLİR
+    </div>
+
+
+    <div class="price-grid">
+
+
+      <div class="price-box">
+
+        <div class="price-title">
+          Önerilen minimum
+        </div>
+
+        <div
+          class="price"
+          id="minPrice"
+        >
+          -
+        </div>
+
+      </div>
+
+
+      <div class="price-box">
+
+        <div class="price-title">
+          Önerilen maksimum
+        </div>
+
+        <div
+          class="price"
+          id="maxPrice"
+        >
+          -
+        </div>
+
+      </div>
+
+
+      <div class="price-box">
+
+        <div class="price-title">
+          İlan fiyatı
+        </div>
+
+        <div
+          class="price"
+          id="listingPrice"
+        >
+          -
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="target">
+
+      <div class="target-title">
+        🎯 Pazarlık hedefi
+      </div>
+
+      <div
+        class="target-price"
+        id="targetPrice"
+      >
+        -
+      </div>
+
+    </div>
+
+
+    <div class="reason">
+
+      <h3>
+        OtoRadar neden böyle düşünüyor?
+      </h3>
+
+      <ul id="reasons"></ul>
+
+    </div>
+
+
+    <div class="warning">
+
+      ⚠️ Bu sürüm prototip hesaplama
+      motorudur. Gerçek piyasa verisi
+      bağlandığında değerleme çok daha
+      hassas hale gelecektir.
+
+    </div>
+
+  </div>
+
 </div>
 
 
 <script>
 
-const models = {
 
-"Audi": [
-"A1","A3","A4","A5","A6","Q2","Q3","Q5","Q7"
-],
+/* =========================================
+   ARAÇ VERİTABANI
+========================================= */
 
-"BMW": [
-"1 Serisi","2 Serisi","3 Serisi","4 Serisi","5 Serisi",
-"X1","X2","X3","X5"
-],
 
-"Chery": [
-"Omoda 5","Tiggo 7 Pro","Tiggo 8 Pro","Tiggo 8 Pro Max"
-],
+const carData = {
 
-"Citroen": [
-"C3","C4","C5 Aircross","C-Elysee"
-],
 
-"Fiat": [
-"500","Egea Sedan","Egea Cross","Egea Hatchback",
-"Panda","Tipo"
-],
+  "Audi": {
 
-"Ford": [
-"Fiesta","Focus","Puma","Kuga","Mondeo","Courier"
-],
+    "A1": [
+      "1.0 TFSI",
+      "1.4 TFSI",
+      "1.6 TDI"
+    ],
 
-"Honda": [
-"Jazz","Civic","City","HR-V","CR-V"
-],
+    "A3": [
+      "1.0 TFSI",
+      "1.4 TFSI",
+      "1.5 TFSI",
+      "1.6 TDI",
+      "2.0 TDI"
+    ],
 
-"Hyundai": [
-"i10","i20","Elantra","Bayon","Kona","Tucson","Santa Fe"
-],
+    "A4": [
+      "1.4 TFSI",
+      "2.0 TFSI",
+      "2.0 TDI"
+    ],
 
-"Kia": [
-"Picanto","Rio","Ceed","Stonic","Sportage","Sorento"
-],
+    "A5": [
+      "1.4 TFSI",
+      "2.0 TFSI",
+      "2.0 TDI"
+    ],
 
-"Mazda": [
-"2","3","6","CX-3","CX-5","CX-30"
-],
+    "A6": [
+      "2.0 TDI",
+      "3.0 TDI"
+    ],
 
-"Mercedes-Benz": [
-"A Serisi","B Serisi","C Serisi","E Serisi",
-"CLA","GLA","GLC"
-],
+    "Q2": [
+      "1.0 TFSI",
+      "1.4 TFSI",
+      "1.6 TDI",
+      "2.0 TDI"
+    ],
 
-"MG": [
-"ZS","HS","4","5","Marvel R"
-],
+    "Q3": [
+      "1.4 TFSI",
+      "2.0 TDI"
+    ]
 
-"Nissan": [
-"Micra","Juke","Qashqai","X-Trail"
-],
+  },
 
-"Opel": [
-"Corsa","Astra","Mokka","Crossland","Grandland"
-],
 
-"Peugeot": [
-"208","308","2008","3008","5008"
-],
+  "BMW": {
 
-"Renault": [
-"Clio","Megane","Taliant","Captur","Austral",
-"Kadjar","Koleos"
-],
+    "1 Serisi": [
+      "116i",
+      "118i",
+      "120i",
+      "116d",
+      "118d"
+    ],
 
-"Seat": [
-"Ibiza","Leon","Arona","Ateca"
-],
+    "2 Serisi": [
+      "218i",
+      "220i",
+      "220d"
+    ],
 
-"Skoda": [
-"Fabia","Scala","Octavia","Superb","Kamiq",
-"Karoq","Kodiaq"
-],
+    "3 Serisi": [
+      "316i",
+      "318i",
+      "320i",
+      "320d",
+      "330i"
+    ],
 
-"Tesla": [
-"Model 3","Model Y","Model S","Model X"
-],
+    "4 Serisi": [
+      "420i",
+      "420d",
+      "430i"
+    ],
 
-"Toyota": [
-"Yaris","Corolla","C-HR","Camry","RAV4",
-"Yaris Cross"
-],
+    "5 Serisi": [
+      "520i",
+      "520d",
+      "525d",
+      "530i",
+      "530d"
+    ],
 
-"Togg": [
-"T10X","T10F"
-],
+    "X1": [
+      "18i",
+      "20i",
+      "18d",
+      "20d"
+    ],
 
-"Volkswagen": [
-"Polo","Golf","Passat","Jetta","T-Roc",
-"Tiguan","Taigo","Caddy"
-],
+    "X3": [
+      "20i",
+      "20d",
+      "30d"
+    ],
 
-"Volvo": [
-"S60","S90","V40","V60","XC40","XC60","XC90"
-]
+    "X5": [
+      "30d",
+      "40i",
+      "40d"
+    ]
+
+  },
+
+
+  "Fiat": {
+
+    "Egea Sedan": [
+      "1.3 Multijet",
+      "1.4 Fire",
+      "1.6 Multijet",
+      "1.5 Hybrid"
+    ],
+
+    "Egea Cross": [
+      "1.3 Multijet",
+      "1.4 Fire",
+      "1.6 Multijet",
+      "1.5 Hybrid"
+    ],
+
+    "500": [
+      "1.2",
+      "1.0 Hybrid"
+    ],
+
+    "Panda": [
+      "1.0 Hybrid",
+      "1.2"
+    ]
+
+  },
+
+
+  "Ford": {
+
+    "Fiesta": [
+      "1.0 EcoBoost",
+      "1.1",
+      "1.5 TDCi"
+    ],
+
+    "Focus": [
+      "1.0 EcoBoost",
+      "1.5 EcoBoost",
+      "1.5 TDCi",
+      "1.6 TDCi"
+    ],
+
+    "Puma": [
+      "1.0 EcoBoost",
+      "1.5 EcoBoost"
+    ],
+
+    "Kuga": [
+      "1.5 EcoBoost",
+      "1.5 TDCi",
+      "2.0 TDCi",
+      "2.5 Hybrid"
+    ]
+
+  },
+
+
+  "Honda": {
+
+    "Civic": [
+      "1.5 VTEC Turbo",
+      "1.6 i-VTEC",
+      "1.6 i-DTEC"
+    ],
+
+    "Jazz": [
+      "1.3 i-VTEC",
+      "1.5 Hybrid"
+    ],
+
+    "City": [
+      "1.5 i-VTEC"
+    ],
+
+    "HR-V": [
+      "1.5 i-VTEC",
+      "1.5 e:HEV"
+    ],
+
+    "CR-V": [
+      "1.5 VTEC Turbo",
+      "2.0 Hybrid"
+    ]
+
+  },
+
+
+  "Hyundai": {
+
+    "i10": [
+      "1.0 MPI",
+      "1.2 MPI"
+    ],
+
+    "i20": [
+      "1.2 MPI",
+      "1.0 T-GDI",
+      "1.4 CRDi"
+    ],
+
+    "Bayon": [
+      "1.2 MPI",
+      "1.0 T-GDI"
+    ],
+
+    "Kona": [
+      "1.0 T-GDI",
+      "1.6 CRDi",
+      "1.6 Hybrid"
+    ],
+
+    "Tucson": [
+      "1.6 T-GDI",
+      "1.6 CRDi",
+      "1.6 Hybrid"
+    ]
+
+  },
+
+
+  "Kia": {
+
+    "Picanto": [
+      "1.0 MPI",
+      "1.2 MPI"
+    ],
+
+    "Rio": [
+      "1.2 MPI",
+      "1.0 T-GDI",
+      "1.4 CRDi"
+    ],
+
+    "Stonic": [
+      "1.0 T-GDI",
+      "1.4 MPI"
+    ],
+
+    "Sportage": [
+      "1.6 T-GDI",
+      "1.6 CRDi",
+      "1.6 Hybrid"
+    ]
+
+  },
+
+
+  "Mazda": {
+
+    "2": [
+      "1.5 Skyactiv-G"
+    ],
+
+    "3": [
+      "1.5 Skyactiv-G",
+      "2.0 Skyactiv-G",
+      "2.0 Skyactiv-X"
+    ],
+
+    "6": [
+      "2.0 Skyactiv-G",
+      "2.2 Skyactiv-D"
+    ],
+
+    "CX-3": [
+      "1.5 Skyactiv-D",
+      "2.0 Skyactiv-G"
+    ],
+
+    "CX-5": [
+      "2.0 Skyactiv-G",
+      "2.2 Skyactiv-D"
+    ]
+
+  },
+
+
+  "Mercedes-Benz": {
+
+    "A Serisi": [
+      "A180",
+      "A200",
+      "A180d"
+    ],
+
+    "C Serisi": [
+      "C180",
+      "C200",
+      "C200d",
+      "C220d"
+    ],
+
+    "E Serisi": [
+      "E200",
+      "E220d",
+      "E300"
+    ],
+
+    "CLA": [
+      "CLA180",
+      "CLA200",
+      "CLA220d"
+    ],
+
+    "GLA": [
+      "GLA180",
+      "GLA200",
+      "GLA220d"
+    ]
+
+  },
+
+
+  "Nissan": {
+
+    "Micra": [
+      "1.0 IG-T",
+      "1.2"
+    ],
+
+    "Juke": [
+      "1.0 DIG-T",
+      "1.5 dCi"
+    ],
+
+    "Qashqai": [
+      "1.3 DIG-T",
+      "1.5 dCi",
+      "1.6 dCi"
+    ],
+
+    "X-Trail": [
+      "1.5 e-Power",
+      "1.6 dCi",
+      "2.0 dCi"
+    ]
+
+  },
+
+
+  "Opel": {
+
+    "Corsa": [
+      "1.2",
+      "1.2 Turbo",
+      "1.5 Diesel",
+      "Electric"
+    ],
+
+    "Astra": [
+      "1.2 Turbo",
+      "1.4 Turbo",
+      "1.5 Diesel",
+      "1.6 CDTI"
+    ],
+
+    "Mokka": [
+      "1.2 Turbo",
+      "1.5 Diesel",
+      "Electric"
+    ],
+
+    "Crossland": [
+      "1.2 Turbo",
+      "1.5 Diesel"
+    ],
+
+    "Grandland": [
+      "1.2 Turbo",
+      "1.5 Diesel",
+      "Hybrid"
+    ]
+
+  },
+
+
+  "Peugeot": {
+
+    "208": [
+      "1.2 PureTech",
+      "1.5 BlueHDi",
+      "Electric"
+    ],
+
+    "308": [
+      "1.2 PureTech",
+      "1.5 BlueHDi",
+      "Hybrid"
+    ],
+
+    "2008": [
+      "1.2 PureTech",
+      "1.5 BlueHDi",
+      "Electric"
+    ],
+
+    "3008": [
+      "1.2 PureTech",
+      "1.5 BlueHDi",
+      "Hybrid"
+    ],
+
+    "5008": [
+      "1.2 PureTech",
+      "1.5 BlueHDi"
+    ]
+
+  },
+
+
+  "Renault": {
+
+    "Clio": [
+      "1.0 TCe",
+      "1.3 TCe",
+      "1.5 dCi",
+      "E-Tech"
+    ],
+
+    "Megane": [
+      "1.3 TCe",
+      "1.5 dCi",
+      "1.6 dCi",
+      "E-Tech"
+    ],
+
+    "Captur": [
+      "1.0 TCe",
+      "1.3 TCe",
+      "1.5 dCi",
+      "E-Tech"
+    ],
+
+    "Austral": [
+      "1.3 TCe",
+      "E-Tech"
+    ]
+
+  },
+
+
+  "Seat": {
+
+    "Ibiza": [
+      "1.0 MPI",
+      "1.0 TSI",
+      "1.6 TDI"
+    ],
+
+    "Leon": [
+      "1.0 TSI",
+      "1.5 TSI",
+      "1.6 TDI",
+      "2.0 TDI"
+    ],
+
+    "Arona": [
+      "1.0 TSI",
+      "1.6 TDI"
+    ],
+
+    "Ateca": [
+      "1.5 TSI",
+      "2.0 TDI"
+    ]
+
+  },
+
+
+  "Skoda": {
+
+    "Fabia": [
+      "1.0 MPI",
+      "1.0 TSI"
+    ],
+
+    "Scala": [
+      "1.0 TSI",
+      "1.5 TSI"
+    ],
+
+    "Octavia": [
+      "1.0 TSI",
+      "1.5 TSI",
+      "1.6 TDI",
+      "2.0 TDI"
+    ],
+
+    "Superb": [
+      "1.5 TSI",
+      "2.0 TSI",
+      "2.0 TDI"
+    ],
+
+    "Karoq": [
+      "1.5 TSI",
+      "1.6 TDI",
+      "2.0 TDI"
+    ]
+
+  },
+
+
+  "Tesla": {
+
+    "Model 3": [
+      "Standard Range",
+      "Long Range",
+      "Performance"
+    ],
+
+    "Model Y": [
+      "Standard Range",
+      "Long Range",
+      "Performance"
+    ],
+
+    "Model S": [
+      "Long Range",
+      "Plaid"
+    ],
+
+    "Model X": [
+      "Long Range",
+      "Plaid"
+    ]
+
+  },
+
+
+  "Toyota": {
+
+    "Yaris": [
+      "1.0",
+      "1.5",
+      "1.5 Hybrid"
+    ],
+
+    "Corolla": [
+      "1.6",
+      "1.5",
+      "1.8 Hybrid",
+      "1.8"
+    ],
+
+    "C-HR": [
+      "1.2 Turbo",
+      "1.8 Hybrid",
+      "2.0 Hybrid"
+    ],
+
+    "Camry": [
+      "2.5 Hybrid"
+    ],
+
+    "RAV4": [
+      "2.0",
+      "2.5 Hybrid"
+    ]
+
+  },
+
+
+  "Togg": {
+
+    "T10X": [
+      "160 kW",
+      "320 kW"
+    ],
+
+    "T10F": [
+      "160 kW",
+      "320 kW"
+    ]
+
+  },
+
+
+  "Volkswagen": {
+
+    "Polo": [
+      "1.0 MPI",
+      "1.0 TSI",
+      "1.6 TDI"
+    ],
+
+    "Golf": [
+      "1.0 TSI",
+      "1.5 TSI",
+      "1.6 TDI",
+      "2.0 TDI"
+    ],
+
+    "Passat": [
+      "1.4 TSI",
+      "1.5 TSI",
+      "1.6 TDI",
+      "2.0 TDI"
+    ],
+
+    "T-Roc": [
+      "1.0 TSI",
+      "1.5 TSI",
+      "2.0 TDI"
+    ],
+
+    "Tiguan": [
+      "1.5 TSI",
+      "2.0 TDI",
+      "2.0 TSI"
+    ]
+
+  },
+
+
+  "Volvo": {
+
+    "S60": [
+      "T3",
+      "T4",
+      "T5",
+      "D3",
+      "D4"
+    ],
+
+    "S90": [
+      "T4",
+      "T5",
+      "D4",
+      "D5"
+    ],
+
+    "V40": [
+      "T3",
+      "T4",
+      "D2",
+      "D3"
+    ],
+
+    "XC40": [
+      "T3",
+      "T4",
+      "D3",
+      "D4",
+      "Recharge"
+    ],
+
+    "XC60": [
+      "T5",
+      "T6",
+      "D4",
+      "D5",
+      "Recharge"
+    ],
+
+    "XC90": [
+      "T5",
+      "T6",
+      "D5",
+      "Recharge"
+    ]
+
+  }
 
 };
 
 
-function updateModels() {
-
-const brand = document.getElementById("brand").value;
-const model = document.getElementById("model");
-
-model.innerHTML = "";
-
-if (!brand) {
-
-model.innerHTML =
-'<option value="">Önce marka seç</option>';
-
-return;
-
-}
-
-model.innerHTML =
-'<option value="">Model seç</option>';
-
-models[brand].forEach(function(item) {
-
-const option = document.createElement("option");
-
-option.value = item;
-option.textContent = item;
-
-model.appendChild(option);
-
-});
-
-}
+/* =========================================
+   MARKALARI DOLDUR
+========================================= */
 
 
-function money(number) {
+const brandSelect =
+  document.getElementById("brand");
 
-return Math.round(number).toLocaleString("tr-TR") + " TL";
+const modelSelect =
+  document.getElementById("model");
 
-}
-
-
-function analyze() {
-
-const brand =
-document.getElementById("brand").value;
-
-const model =
-document.getElementById("model").value;
-
-const year =
-Number(document.getElementById("year").value);
-
-const km =
-Number(document.getElementById("km").value);
-
-const price =
-Number(document.getElementById("price").value);
-
-const tramer =
-Number(document.getElementById("tramer").value) || 0;
-
-const painted =
-Number(document.getElementById("painted").value) || 0;
-
-const changed =
-Number(document.getElementById("changed").value) || 0;
-
-const chassis =
-Number(document.getElementById("chassis").value);
-
-const podye =
-Number(document.getElementById("podye").value);
-
-const direk =
-Number(document.getElementById("direk").value);
-
-const packageValue =
-document.getElementById("package").value;
+const engineSelect =
+  document.getElementById("engine");
 
 
-/* Kontroller */
+Object.keys(carData)
+  .sort()
+  .forEach(function(brand) {
 
-if (!brand || !model) {
+    const option =
+      document.createElement("option");
 
-alert("Lütfen marka ve model seç.");
+    option.value = brand;
+    option.textContent = brand;
 
-return;
+    brandSelect.appendChild(option);
 
-}
-
-if (!year || !km || !price) {
-
-alert("Lütfen yıl, kilometre ve ilan fiyatını gir.");
-
-return;
-
-}
+  });
 
 
-/*
-Basit prototip değerleme motoru.
-
-Gerçek piyasa verisi bağlandığında
-bu bölüm daha gelişmiş hale getirilecek.
-*/
+/* =========================================
+   MARKA → MODEL
+========================================= */
 
 
-let age =
-new Date().getFullYear() - year;
+brandSelect.addEventListener(
+  "change",
+  function() {
 
-if (age < 0) age = 0;
+    const brand = this.value;
+
+    modelSelect.innerHTML =
+      '<option value="">Model seç</option>';
+
+    engineSelect.innerHTML =
+      '<option value="">Önce model seç</option>';
+
+    if (!brand) return;
 
 
-/* Yaş etkisi */
+    Object.keys(carData[brand])
+      .sort()
+      .forEach(function(model) {
 
-let ageFactor =
-Math.max(0.55, 1 - age * 0.035);
+        const option =
+          document.createElement("option");
+
+        option.value = model;
+        option.textContent = model;
+
+        modelSelect.appendChild(option);
+
+      });
+
+  }
+);
 
 
-/* KM etkisi */
+/* =========================================
+   MODEL → MOTOR
+========================================= */
 
-let kmFactor = 1;
 
-if (km < 50000) {
+modelSelect.addEventListener(
+  "change",
+  function() {
 
-kmFactor = 1.08;
+    const brand =
+      brandSelect.value;
 
-} else if (km < 100000) {
+    const model =
+      this.value;
 
-kmFactor = 1.00;
+    engineSelect.innerHTML =
+      '<option value="">Motor seç</option>';
 
-} else if (km < 150000) {
+    if (!brand || !model) return;
 
-kmFactor = 0.92;
 
-} else if (km < 200000) {
+    carData[brand][model]
+      .forEach(function(engine) {
 
-kmFactor = 0.84;
+        const option =
+          document.createElement("option");
 
-} else {
+        option.value = engine;
+        option.textContent = engine;
 
-kmFactor = 0.75;
+        engineSelect.appendChild(option);
+
+      });
+
+  }
+);
+
+
+/* =========================================
+   FİYAT FORMAT
+========================================= */
+
+
+function formatTL(number) {
+
+  return new Intl.NumberFormat(
+    "tr-TR"
+  ).format(
+    Math.round(number)
+  ) + " TL";
 
 }
 
 
-/* Hasar etkisi */
+/* =========================================
+   ANALİZ MOTORU
+========================================= */
 
-let damagePenalty = 0;
 
-damagePenalty += painted * 0.012;
+function analyzeCar() {
 
-damagePenalty += changed * 0.035;
 
-damagePenalty += Math.min(tramer / 1000000, 0.15);
+  const year =
+    Number(
+      document.getElementById("year").value
+    );
 
-damagePenalty += chassis * 0.12;
+  const km =
+    Number(
+      document.getElementById("km").value
+    );
 
-damagePenalty += podye * 0.10;
+  const listingPrice =
+    Number(
+      document.getElementById("price").value
+    );
 
-damagePenalty += direk * 0.12;
+  const damage =
+    Number(
+      document.getElementById("damage").value
+    );
 
+  const painted =
+    Number(
+      document.getElementById("painted").value
+    );
 
-/* Paket bilgisi varsa küçük avantaj */
+  const changed =
+    Number(
+      document.getElementById("changed").value
+    );
 
-let packageBonus =
-packageValue ? 0.025 : 0;
 
+  const chassis =
+    document.getElementById("chassis").value;
 
-/*
-İlan fiyatından geriye doğru
-tahmini makul alım aralığı oluşturuyoruz.
-*/
+  const podye =
+    document.getElementById("podye").value;
 
-let marketBase =
-price / (ageFactor * kmFactor);
+  const pillar =
+    document.getElementById("pillar").value;
 
-let fairPrice =
-marketBase *
-(1 - damagePenalty + packageBonus);
 
+  if (!year || !km || !listingPrice) {
 
-/* Daha gerçekçi sınırlar */
+    alert(
+      "Lütfen model yılı, kilometre ve ilan fiyatını gir."
+    );
 
-let minPrice =
-fairPrice * 0.90;
+    return;
 
-let maxPrice =
-fairPrice * 1.05;
+  }
 
 
-/* Skor */
+  /*
+    PROTOTİP BAZ FİYATI
 
-let score = 100;
+    Gerçek veri bağlandığında
+    burası tamamen değişecek.
+  */
 
 
-/* Fiyat */
+  const currentYear = 2026;
 
-if (price > maxPrice) {
+  const age =
+    Math.max(0, currentYear - year);
 
-score -= Math.min(
-35,
-((price - maxPrice) / maxPrice) * 100
-);
 
-} else if (price < minPrice) {
+  let basePrice =
+    listingPrice;
 
-score += 5;
 
-} else {
+  /*
+    Kilometre düzeltmesi
+  */
 
-score += 0;
 
-}
+  if (km < 50000) {
 
+    basePrice *= 1.05;
 
-/* KM */
+  }
 
-if (km > 200000) {
+  else if (km > 200000) {
 
-score -= 15;
+    basePrice *= 0.85;
 
-} else if (km > 150000) {
+  }
 
-score -= 9;
+  else if (km > 150000) {
 
-} else if (km > 100000) {
+    basePrice *= 0.90;
 
-score -= 5;
+  }
 
-}
+  else if (km > 100000) {
 
+    basePrice *= 0.95;
 
-/* Hasar */
+  }
 
-score -= painted * 2;
 
-score -= changed * 4;
+  /*
+    Yaş düzeltmesi
+  */
 
-if (tramer > 50000) score -= 4;
 
-if (tramer > 150000) score -= 5;
+  if (age > 10) {
 
+    basePrice *= 0.95;
 
-/* Kritik bölgeler */
+  }
 
-score -= chassis * 15;
 
-score -= podye * 12;
+  /*
+    Hasar düzeltmesi
+  */
 
-score -= direk * 15;
 
+  basePrice -=
+    painted * 12000;
 
-/* Paket */
+  basePrice -=
+    changed * 30000;
 
-if (packageValue) score += 2;
 
+  /*
+    Tramer
+  */
 
-/* Sınırlar */
 
-score = Math.round(
-Math.max(0, Math.min(100, score))
-);
+  basePrice -=
+    damage * 0.20;
 
 
-/* Durum */
+  /*
+    Şasi / podye / direk
+  */
 
-let status = "";
 
-if (score >= 80) {
+  let structuralPenalty = 0;
 
-status = "🟢 ALINABİLİR";
 
-} else if (score >= 60) {
+  if (chassis === "İşlem var") {
 
-status = "🟡 PAZARLIK GEREKİR";
+    structuralPenalty += 80000;
 
-} else {
+  }
 
-status = "🔴 UZAK DUR";
 
-}
+  if (podye === "İşlem var") {
 
+    structuralPenalty += 60000;
 
-/* Ekrana yaz */
+  }
 
-document.getElementById("score")
-.textContent = score + "/100";
 
-document.getElementById("status")
-.textContent = status;
+  if (pillar === "İşlem var") {
 
-document.getElementById("minPrice")
-.textContent = money(minPrice);
+    structuralPenalty += 90000;
 
-document.getElementById("maxPrice")
-.textContent = money(maxPrice);
+  }
 
-document.getElementById("listingPrice")
-.textContent = money(price);
 
+  basePrice -=
+    structuralPenalty;
 
-/*
-Pazarlık hedefi.
-İlan fiyatından aşağı doğru
-yaklaşık %8 hedefliyoruz.
-*/
 
-let target =
-Math.min(
-price * 0.92,
-maxPrice
-);
+  /*
+    Tahmini piyasa aralığı
+  */
 
-document.getElementById("targetPrice")
-.textContent = money(target);
 
+  const minPrice =
+    Math.max(
+      0,
+      basePrice * 0.95
+    );
 
-/* Nedenler */
 
-const reasons =
-document.getElementById("reasons");
+  const maxPrice =
+    Math.max(
+      0,
+      basePrice * 1.10
+    );
 
-reasons.innerHTML = "";
 
+  /*
+    Pazarlık hedefi
+  */
 
-function addReason(text) {
 
-const li =
-document.createElement("li");
+  let targetPrice =
+    minPrice * 0.98;
 
-li.textContent = text;
 
-reasons.appendChild(li);
+  /*
+    Skor
+  */
 
-}
 
+  let score = 75;
 
-if (km >= 200000) {
 
-addReason(
-"Kilometre çok yüksek ve fiyat aşağı çekilmeli."
-);
+  if (km < 100000)
+    score += 10;
 
-} else if (km >= 150000) {
+  if (km > 180000)
+    score -= 15;
 
-addReason(
-"Kilometre yüksek, pazarlıkta kullanılabilir."
-);
+  if (painted <= 2)
+    score += 5;
 
-} else {
+  if (painted >= 5)
+    score -= 8;
 
-addReason(
-"Kilometre seviyesi olumlu görünüyor."
-);
+  if (changed === 0)
+    score += 5;
 
-}
+  if (changed >= 2)
+    score -= 10;
 
+  if (damage === 0)
+    score += 5;
 
-if (painted > 0) {
+  if (damage > 50000)
+    score -= 8;
 
-addReason(
-painted +
-" boyalı parça pazarlıkta kullanılabilir."
-);
+  if (
+    chassis === "İşlem var" ||
+    podye === "İşlem var" ||
+    pillar === "İşlem var"
+  ) {
 
-}
+    score -= 25;
 
+  }
 
-if (changed > 0) {
 
-addReason(
-changed +
-" değişen parça önemli bir pazarlık kalemi."
-);
+  /*
+    İlan fiyatı karşılaştırması
+  */
 
-}
 
+  if (listingPrice <= maxPrice) {
 
-if (tramer === 0) {
+    score += 5;
 
-addReason(
-"Tramer bilgisi temiz görünüyor."
-);
+  }
 
-} else {
+  else {
 
-addReason(
-"Tramer kaydı fiyat değerlendirmesinde dikkate alındı."
-);
+    score -= 10;
 
-}
+  }
 
 
-if (chassis === 0 &&
-podye === 0 &&
-direk === 0) {
+  score =
+    Math.max(
+      0,
+      Math.min(100, score)
+    );
 
-addReason(
-"Şasi, podye ve direk için işlem girilmedi."
-);
 
-} else {
+  /*
+    Durum
+  */
 
-addReason(
-"Şasi/podye/direk bilgileri fiyatı ciddi etkiliyor."
-);
 
-}
+  let status = "";
 
+  let badgeClass = "";
 
-if (!packageValue) {
 
-addReason(
-"Paket bilgisi girilmedi. Değerleme yine de yapıldı."
-);
+  if (score >= 80) {
 
-} else {
+    status =
+      "🟢 ALINABİLİR";
 
-addReason(
-"Paket bilgisi değerlendirmeye dahil edildi."
-);
+  }
 
-}
+  else if (score >= 60) {
 
+    status =
+      "🟡 İNCELENMELİ";
 
-if (price > maxPrice) {
+  }
 
-addReason(
-"İlan fiyatı OtoRadar'ın önerdiği maksimum seviyenin üzerinde."
-);
+  else {
 
-} else if (price <= minPrice) {
+    status =
+      "🔴 DİKKAT";
 
-addReason(
-"İlan fiyatı OtoRadar'ın önerdiği aralığın altında veya içinde."
-);
+  }
 
-} else {
 
-addReason(
-"İlan fiyatı piyasa tahminine yakın görünüyor."
-);
+  /*
+    Ekrana yaz
+  */
 
-}
 
+  document.getElementById(
+    "score"
+  ).textContent =
+    score + "/100";
 
-/* Sonucu göster */
 
-document.getElementById("result")
-.style.display = "block";
+  document.getElementById(
+    "badge"
+  ).textContent =
+    status;
 
-document.getElementById("result")
-.scrollIntoView({
-behavior: "smooth",
-block: "start"
-});
+
+  document.getElementById(
+    "minPrice"
+  ).textContent =
+    formatTL(minPrice);
+
+
+  document.getElementById(
+    "maxPrice"
+  ).textContent =
+    formatTL(maxPrice);
+
+
+  document.getElementById(
+    "listingPrice"
+  ).textContent =
+    formatTL(listingPrice);
+
+
+  document.getElementById(
+    "targetPrice"
+  ).textContent =
+    formatTL(targetPrice);
+
+
+  /*
+    NEDENLER
+  */
+
+
+  const reasons =
+    document.getElementById(
+      "reasons"
+    );
+
+
+  reasons.innerHTML = "";
+
+
+  function addReason(text) {
+
+    const li =
+      document.createElement("li");
+
+    li.textContent = text;
+
+    reasons.appendChild(li);
+
+  }
+
+
+  if (km <= 100000) {
+
+    addReason(
+      "Kilometre seviyesi olumlu görünüyor."
+    );
+
+  }
+
+  else {
+
+    addReason(
+      "Kilometre seviyesi fiyat pazarlığında kullanılabilir."
+    );
+
+  }
+
+
+  if (painted > 0) {
+
+    addReason(
+      painted +
+      " boyalı parça fiyat pazarlığında kullanılabilir."
+    );
+
+  }
+
+  else {
+
+    addReason(
+      "Boyalı parça bilgisi olumlu."
+    );
+
+  }
+
+
+  if (changed > 0) {
+
+    addReason(
+      changed +
+      " değişen parça önemli bir pazarlık kalemidir."
+    );
+
+  }
+
+  else {
+
+    addReason(
+      "Değişen parça bilgisi olumlu."
+    );
+
+  }
+
+
+  if (damage === 0) {
+
+    addReason(
+      "Tramer kaydı temiz görünüyor."
+    );
+
+  }
+
+  else {
+
+    addReason(
+      "Tramer kaydı fiyat değerlendirmesine dahil edildi."
+    );
+
+  }
+
+
+  if (
+    chassis === "İşlem yok" &&
+    podye === "İşlem yok" &&
+    pillar === "İşlem yok"
+  ) {
+
+    addReason(
+      "Şasi, podye ve direk için işlem bilgisi girilmedi."
+    );
+
+  }
+
+  else {
+
+    addReason(
+      "Yapısal işlem bilgileri fiyatlamada dikkate alındı."
+    );
+
+  }
+
+
+  const selectedPackage =
+    document.getElementById(
+      "package"
+    ).value;
+
+
+  if (!selectedPackage) {
+
+    addReason(
+      "Paket bilgisi girilmedi. Değerleme yine de yapıldı."
+    );
+
+  }
+
+  else {
+
+    addReason(
+      "Paket bilgisi değerlendirmeye dahil edildi."
+    );
+
+  }
+
+
+  if (
+    listingPrice <= maxPrice
+  ) {
+
+    addReason(
+      "İlan fiyatı OtoRadar'ın önerdiği aralıkta veya altında."
+    );
+
+  }
+
+  else {
+
+    addReason(
+      "İlan fiyatı OtoRadar'ın önerdiği maksimum seviyenin üzerinde."
+    );
+
+  }
+
+
+  /*
+    Sonucu göster
+  */
+
+
+  const result =
+    document.getElementById(
+      "result"
+    );
+
+
+  result.style.display =
+    "block";
+
+
+  result.scrollIntoView({
+    behavior: "smooth"
+  });
 
 }
 
